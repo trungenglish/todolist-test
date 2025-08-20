@@ -16,9 +16,11 @@
       "@hooks/*": ["./src/hooks/*"],
       "@services/*": ["./src/services/*"],
       "@types/*": ["./src/types/*"],
-      "@store/*": ["./src/store/*"],
-      "@context/*": ["./src/context/*"],
+      "@router/*": ["./src/router/*"],
+      "@store/*": ["./src/store/*"], 
+      "@styles/*": ["./src/styles/*"],
       "@lib/*": ["./src/lib/*"],
+      "@context/*": ["./src/context/*"]
     }
-  }
+  },
 }
