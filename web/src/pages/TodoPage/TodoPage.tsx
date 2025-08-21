@@ -1,4 +1,5 @@
 import { CheckSquare, Sparkles } from "lucide-react";
+import TodoStats from "@/pages/TodoPage/components/TodoStats";
 
 const TodoPage = () => {
   return (
@@ -22,6 +23,8 @@ const TodoPage = () => {
             Quản lý công việc một cách thông minh và hiệu quả
           </p>
         </div>
+
+        <TodoStats />
 
       </div>
     </div>
