@@ -1,6 +1,17 @@
 import { CheckCircle, Clock, Target } from "lucide-react";
 
-const TodoStats = () => {
+interface TodoStatsProps {
+    stats: {
+      total: number;
+      completed: number;
+      active: number;
+    };
+  }
+
+const TodoStats = ({ stats }: TodoStatsProps) => {
+    const completionRate = stats.total > 0 ? Math.round((stats.completed / stats.total) * 100) : 0;
+
+
     return (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
             {/* Total */}
@@ -36,7 +47,12 @@ const TodoStats = () => {
                     <div>
                         <p className="text-sm text-[hsl(var(--muted-foreground))]">Hoàn thành</p>
                         <div className="flex items-center gap-2">
-                            <p className="text-2xl font-bold text-[hsl(var(--foreground))]">10</p>
+                            <p className="text-2xl font-bold text-[hsl(var(--foreground))]">{stats.completed}</p>
+                            {stats.total > 0 && (
+                                <span className="text-xs text-success font-medium bg-success/10 px-2 py-1 rounded-full">
+                                {completionRate}%
+                                </span>
+                            )}
                         </div>
                     </div>
                 </div>
