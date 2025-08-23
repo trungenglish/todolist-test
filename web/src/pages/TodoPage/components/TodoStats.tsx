@@ -22,7 +22,7 @@ const TodoStats = ({ stats }: TodoStatsProps) => {
                     </div>
                     <div>
                         <p className="text-sm text-[hsl(var(--muted-foreground))]">Tổng cộng</p>
-                        <p className="text-2xl font-bold text-[hsl(var(--foreground))]">10</p>
+                        <p className="text-2xl font-bold text-[hsl(var(--foreground))]">{stats.total}</p>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@ const TodoStats = ({ stats }: TodoStatsProps) => {
                     </div>
                     <div>
                         <p className="text-sm text-[hsl(var(--muted-foreground))]">Đang làm</p>
-                        <p className="text-2xl font-bold text-[hsl(var(--foreground))]">10</p>
+                        <p className="text-2xl font-bold text-[hsl(var(--foreground))]">{stats.active}</p>
                     </div>
                 </div>
             </div>
