@@ -1,141 +1,199 @@
 @import "tailwindcss";
 
 @theme {
-  --background: 240 10% 98%;
-  --foreground: 240 10% 9%;
-
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 9%;
-
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 9%;
-
-  --primary: 240 100% 60%;
-  --primary-foreground: 0 0% 100%;
-  --primary-glow: 255 92% 76%;
-
-  --secondary: 240 5% 96%;
-  --secondary-foreground: 240 6% 10%;
-
-  --muted: 240 5% 96%;
-  --muted-foreground: 240 4% 46%;
-
-  --accent: 240 5% 96%;
-  --accent-foreground: 240 6% 10%;
-
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
-
-  --border: 240 6% 90%;
-  --input: 240 6% 90%;
-  --ring: 240 100% 60%;
-
-  --success: 142 76% 36%;
-  --success-foreground: 0 0% 98%;
-
+  /* Core Colors - converted from v3 :root variables */
+  --color-background: 240 10% 98%;
+  --color-foreground: 240 10% 9%;
+  --color-card: 0 0% 100%;
+  --color-card-foreground: 240 10% 9%;
+  --color-popover: 0 0% 100%;
+  --color-popover-foreground: 240 10% 9%;
+  --color-primary: 240 100% 60%;
+  --color-primary-foreground: 0 0% 100%;
+  --color-primary-glow: 255 92% 76%;
+  --color-secondary: 240 5% 96%;
+  --color-secondary-foreground: 240 6% 10%;
+  --color-muted: 240 5% 96%;
+  --color-muted-foreground: 240 4% 46%;
+  --color-accent: 240 5% 96%;
+  --color-accent-foreground: 240 6% 10%;
+  --color-destructive: 0 84% 60%;
+  --color-destructive-foreground: 0 0% 98%;
+  --color-border: 240 6% 90%;
+  --color-input: 240 6% 90%;
+  --color-ring: 240 100% 60%;
+  --color-success: 142 76% 36%;
+  --color-success-foreground: 0 0% 98%;
+  
+  /* Sidebar colors */
+  --color-sidebar-background: 0 0% 98%;
+  --color-sidebar-foreground: 240 5.3% 26.1%;
+  --color-sidebar-primary: 240 5.9% 10%;
+  --color-sidebar-primary-foreground: 0 0% 98%;
+  --color-sidebar-accent: 240 4.8% 95.9%;
+  --color-sidebar-accent-foreground: 240 5.9% 10%;
+  --color-sidebar-border: 220 13% 91%;
+  --color-sidebar-ring: 217.2 91.2% 59.8%;
+  
+  /* Radius values */
   --radius: 0.75rem;
+}
 
-  --gradient-primary: linear-gradient(135deg, hsl(240,100%,60%), hsl(255,92%,76%));
-  --gradient-background: linear-gradient(180deg, hsl(240,10%,98%), hsl(240,8%,96%));
-  --gradient-card: linear-gradient(145deg, hsl(0,0%,100%), hsl(240,5%,98%));
+/* Dark mode theme */
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-background: 222.2 84% 4.9%;
+    --color-foreground: 210 40% 98%;
+    --color-card: 222.2 84% 4.9%;
+    --color-card-foreground: 210 40% 98%;
+    --color-popover: 222.2 84% 4.9%;
+    --color-popover-foreground: 210 40% 98%;
+    --color-primary: 210 40% 98%;
+    --color-primary-foreground: 222.2 47.4% 11.2%;
+    --color-secondary: 217.2 32.6% 17.5%;
+    --color-secondary-foreground: 210 40% 98%;
+    --color-muted: 217.2 32.6% 17.5%;
+    --color-muted-foreground: 215 20.2% 65.1%;
+    --color-accent: 217.2 32.6% 17.5%;
+    --color-accent-foreground: 210 40% 98%;
+    --color-destructive: 0 62.8% 30.6%;
+    --color-destructive-foreground: 210 40% 98%;
+    --color-border: 217.2 32.6% 17.5%;
+    --color-input: 217.2 32.6% 17.5%;
+    --color-ring: 212.7 26.8% 83.9%;
+    
+    --color-sidebar-background: 240 5.9% 10%;
+    --color-sidebar-foreground: 240 4.8% 95.9%;
+    --color-sidebar-primary: 224.3 76.3% 48%;
+    --color-sidebar-primary-foreground: 0 0% 100%;
+    --color-sidebar-accent: 240 3.7% 15.9%;
+    --color-sidebar-accent-foreground: 240 4.8% 95.9%;
+    --color-sidebar-border: 240 3.7% 15.9%;
+    --color-sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
 
+/* Class-based dark mode variant */
+@custom-variant dark (&:is(.dark *));
+
+.dark {
+  --color-background: 222.2 84% 4.9%;
+  --color-foreground: 210 40% 98%;
+  --color-card: 222.2 84% 4.9%;
+  --color-card-foreground: 210 40% 98%;
+  --color-popover: 222.2 84% 4.9%;
+  --color-popover-foreground: 210 40% 98%;
+  --color-primary: 210 40% 98%;
+  --color-primary-foreground: 222.2 47.4% 11.2%;
+  --color-secondary: 217.2 32.6% 17.5%;
+  --color-secondary-foreground: 210 40% 98%;
+  --color-muted: 217.2 32.6% 17.5%;
+  --color-muted-foreground: 215 20.2% 65.1%;
+  --color-accent: 217.2 32.6% 17.5%;
+  --color-accent-foreground: 210 40% 98%;
+  --color-destructive: 0 62.8% 30.6%;
+  --color-destructive-foreground: 210 40% 98%;
+  --color-border: 217.2 32.6% 17.5%;
+  --color-input: 217.2 32.6% 17.5%;
+  --color-ring: 212.7 26.8% 83.9%;
+  
+  --color-sidebar-background: 240 5.9% 10%;
+  --color-sidebar-foreground: 240 4.8% 95.9%;
+  --color-sidebar-primary: 224.3 76.3% 48%;
+  --color-sidebar-primary-foreground: 0 0% 100%;
+  --color-sidebar-accent: 240 3.7% 15.9%;
+  --color-sidebar-accent-foreground: 240 4.8% 95.9%;
+  --color-sidebar-border: 240 3.7% 15.9%;
+  --color-sidebar-ring: 217.2 91.2% 59.8%;
+}
+
+/* Custom CSS variables that aren't theme tokens */
+:root {
+  /* Custom gradients */
+  --gradient-primary: linear-gradient(135deg, hsl(240, 100%, 60%), hsl(255, 92%, 76%));
+  --gradient-background: linear-gradient(180deg, hsl(240, 10%, 98%), hsl(240, 8%, 96%));
+  --gradient-card: linear-gradient(145deg, hsl(0, 0%, 100%), hsl(240, 5%, 98%));
+  
+  /* Beautiful shadows */
   --shadow-soft: 0 4px 20px -4px hsl(240 100% 60% / 0.1);
   --shadow-elevated: 0 10px 40px -10px hsl(240 100% 60% / 0.15);
   --shadow-glow: 0 0 30px hsl(240 100% 60% / 0.2);
-
-  --transition-smooth: all 0.3s cubic-bezier(0.4,0,0.2,1);
-  --transition-bounce: all 0.5s cubic-bezier(0.68,-0.55,0.265,1.55);
-
-  --sidebar-background: 0 0% 98%;
-  --sidebar-foreground: 240 5.3% 26.1%;
-  --sidebar-primary: 240 5.9% 10%;
-  --sidebar-primary-foreground: 0 0% 98%;
-  --sidebar-accent: 240 4.8% 95.9%;
-  --sidebar-accent-foreground: 240 5.9% 10%;
-  --sidebar-border: 220 13% 91%;
-  --sidebar-ring: 217.2 91.2% 59.8%;
+  
+  /* Smooth transitions */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.dark {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
-
-  --card: 222.2 84% 4.9%;
-  --card-foreground: 210 40% 98%;
-
-  --popover: 222.2 84% 4.9%;
-  --popover-foreground: 210 40% 98%;
-
-  --primary: 210 40% 98%;
-  --primary-foreground: 222.2 47.4% 11.2%;
-
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
-
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
-
-  --accent: 217.2 32.6% 17.5%;
-  --accent-foreground: 210 40% 98%;
-
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
-
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 212.7 26.8% 83.9%;
-
-  --sidebar-background: 240 5.9% 10%;
-  --sidebar-foreground: 240 4.8% 95.9%;
-  --sidebar-primary: 224.3 76.3% 48%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 240 3.7% 15.9%;
-  --sidebar-accent-foreground: 240 4.8% 95.9%;
-  --sidebar-border: 240 3.7% 15.9%;
-  --sidebar-ring: 217.2 91.2% 59.8%;
-}
-
-
+/* Global base styles */
 @layer base {
-  *:not(button):not(input):not(textarea):not(select) {
-    border-color: hsl(var(--border));
+  * {
+    @apply border-border;
   }
-
-  html, body, #root {
-    height: 100%;
-  }
-
+  
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  }
-  
-  /* Ensure buttons have proper cursor and border */
-  button {
-    cursor: pointer;
-    border-color: transparent;
-  }
-  
-  button:disabled {
-    cursor: not-allowed;
+    @apply bg-background text-foreground;
   }
 }
 
-@layer components {
-  .animate-fade-in {
-    animation: fadeIn 0.3s ease-out;
-  }
-  .animate-slide-up {
-    animation: slideUp 0.3s ease-out;
-  }
+/* Custom animations using @utility */
+@utility animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
 }
 
+@utility animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Keyframe animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
+
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Additional utility classes for gradients and shadows */
+@utility gradient-primary {
+  background: var(--gradient-primary);
+}
+
+@utility gradient-background {
+  background: var(--gradient-background);
+}
+
+@utility gradient-card {
+  background: var(--gradient-card);
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-elevated {
+  box-shadow: var(--shadow-elevated);
+}
+
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+@utility transition-smooth {
+  transition: var(--transition-smooth);
+}
+
+@utility transition-bounce {
+  transition: var(--transition-bounce);
 }
