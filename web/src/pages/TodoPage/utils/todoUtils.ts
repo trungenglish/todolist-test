@@ -1,8 +1,9 @@
 import type { Todo, TodoFilter } from "@/types/todo";
 
-export const createTodo = (text: string): Todo => ({
+export const createTodo = (title: string, description: string): Todo => ({
   id: crypto.randomUUID(),
-  text: text.trim(),
+  title: title.trim(),
+  description: description.trim(),
   completed: false,
   createdAt: new Date(),
 });

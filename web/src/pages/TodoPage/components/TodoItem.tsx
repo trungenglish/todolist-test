@@ -43,7 +43,7 @@ const TodoItem = ({ todo, onToggle, onDelete }: TodoItemProps) => {
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
-                    <p
+                    <h3
                         className={cn(
                         "text-base leading-relaxed transition-all duration-200",
                         todo.completed
@@ -51,8 +51,19 @@ const TodoItem = ({ todo, onToggle, onDelete }: TodoItemProps) => {
                             : "text-[hsl(var(--foreground))]"
                         )}
                     >
-                        {todo.text}
-                    </p>
+                        {todo.title}
+                    </h3>
+                    
+                    {todo.description && (
+                        <p
+                        className={cn(
+                            "text-sm text-[hsl(var(--muted-foreground))] mb-2",
+                            todo.completed && "line-through"
+                        )}
+                        >
+                        {todo.description}
+                        </p>
+                    )}
           
                     <div className="flex items-center gap-2 mt-2 text-xs text-[hsl(var(--muted-foreground))]">
                         <Calendar className="w-3 h-3" />

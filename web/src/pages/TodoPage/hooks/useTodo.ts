@@ -7,8 +7,8 @@ export const useTodo = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [filter, setFilter] = useState<TodoFilter>("all");
     
-    const addTodo = (text: string) => {
-      const newTodo = createTodo(text);
+    const addTodo = (title: string, description: string) => {
+      const newTodo = createTodo(title, description);
       setTodos(prev => [newTodo, ...prev]);
     };
 
