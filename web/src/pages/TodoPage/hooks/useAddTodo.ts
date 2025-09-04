@@ -1,29 +1,31 @@
 import { useState } from "react";
 
-export const useAddTodo = (onAdd: (text: string) => void) => {
-    const [inputValue, setInputValue] = useState('');
+export const useAddTodo = (onAdd: (text: string, description: string) => void) => {
     const [isAdding, setIsAdding] = useState(false);
-
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const text = inputValue.trim();
         
-        if (!text) return;
+        if (!title.trim()) return;
     
         setIsAdding(true);
-        onAdd(text);
-        setInputValue('');
+        onAdd(title, description);
+        setTitle('');
+        setDescription('');
         
         setTimeout(() => {
           setIsAdding(false);
         }, 300);
-    };
+      };
 
     return {
-        inputValue,
         isAdding,
         handleSubmit,
-        setInputValue
+        title,
+        description,
+        setTitle,
+        setDescription
     }
 }
