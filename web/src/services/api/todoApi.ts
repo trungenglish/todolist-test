@@ -1,8 +1,11 @@
 import axiosInstance from "@/lib/axiosInstance";
+import type { ApiResponse } from "@/types/apiResponse";
+import type { TodoResponse } from "@/types/todo";
 
 export const todoApi = {
     getAllTodos: async () => {
-        const response = await axiosInstance.get("/tasks");
+        const response = await axiosInstance.get<ApiResponse<TodoResponse[]>>("/tasks");
+        console.log(response);
         return response.data;
     },
 

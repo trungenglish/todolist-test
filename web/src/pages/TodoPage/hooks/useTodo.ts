@@ -1,7 +1,7 @@
 import type { TodoFilter } from "@/types/todo";
 import type { Todo } from "@/types/todo";
 import { useMemo, useState, useEffect } from "react";
-import { calculateStats, createTodo, filterTodos } from "../utils/todoUtils";
+import { calculateStats, filterTodos } from "../utils/todoUtils";
 import { todoApi } from "@/services/api/todoApi";
 
 export const useTodo = () => {
@@ -17,7 +17,11 @@ export const useTodo = () => {
       try {
         setIsLoading(true);
         const todos = await todoApi.getAllTodos();
-        setTodos(todos);
+        if (todos.data === null) {
+          setTodos([]);
+        } else {
+          setTodos(todos.data);
+        }
       } catch (error) {
         console.error("Error fetching todos:", error);
       } finally {
