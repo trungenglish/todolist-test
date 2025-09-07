@@ -8,6 +8,7 @@ export const useTodo = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [filter, setFilter] = useState<TodoFilter>("all");
     const [isLoading, setIsLoading] = useState(false);
+    const [updatingTodos, setUpdatingTodos] = useState<Set<string>>(new Set());
 
     useEffect(() => {
       fetchTodos();
@@ -16,12 +17,8 @@ export const useTodo = () => {
     const fetchTodos = async () => {
       try {
         setIsLoading(true);
-        const todos = await todoApi.getAllTodos();
-        if (todos.data === null) {
-          setTodos([]);
-        } else {
-          setTodos(todos.data);
-        }
+        const response = await todoApi.getAllTodos();
+        setTodos(response.data || []);
       } catch (error) {
         console.error("Error fetching todos:", error);
       } finally {
@@ -32,7 +29,8 @@ export const useTodo = () => {
     const addTodo = async (title: string, description: string) => {
       try {
         const newTodo = await todoApi.createTodo({title, description});
-        setTodos(prev => [newTodo, ...prev]);
+
+        setTodos(prev => [newTodo.data, ...prev]);
       } catch (error) {
         console.error("Error adding todo:", error);
       }
@@ -42,16 +40,41 @@ export const useTodo = () => {
       return filterTodos(todos, filter);
     }, [todos, filter]);
 
-    const toggleTodo = (id: string) => {
-      setTodos(prev =>
-        prev.map(todo =>
-          todo.id === id ? { ...todo, completed: !todo.completed } : todo
-        )
-      );
+    const toggleTodo = async (id: string, completed: boolean) => {
+      if (updatingTodos.has(id)) {
+        console.log(`Todo ${id} is already being updated, skipping...`);
+        return;
+      }
+
+      try {
+        setUpdatingTodos(prev => new Set([...prev, id]));
+        const updatedTodo = await todoApi.updateTodo(id, completed);
+        console.log("updatedTodo", updatedTodo);
+        setTodos(prev =>
+          prev.map(todo =>
+            todo.id === id ? updatedTodo.data : todo
+          )
+        );
+      } catch (error) {
+        console.error("Error toggling todo:", error);
+      } finally {
+        setUpdatingTodos(prev => {
+          const newSet = new Set(prev);
+          newSet.delete(id);
+          return newSet;
+        });
+      }
     };
 
-    const deleteTodo = (id: string) => {
-      setTodos(prev => prev.filter(todo => todo.id !== id));
+    const deleteTodo = async(id: string) => {
+      try {
+        const success = await todoApi.deleteTodo(id);
+        if (success) {
+            setTodos(prev => prev.filter(todo => todo.id !== id));
+        }
+    } catch (error) {
+        console.error("Error deleting todo:", error);
+    }
     };
 
     const stats = useMemo(() => {
@@ -68,6 +91,7 @@ export const useTodo = () => {
         deleteTodo,
         addTodo,
         stats,
-        isLoading
+        isLoading,
+        isUpdatingTodo: (id: string) => updatingTodos.has(id)
       };
 }

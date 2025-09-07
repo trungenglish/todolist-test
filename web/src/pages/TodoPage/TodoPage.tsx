@@ -13,7 +13,8 @@ const TodoPage = () => {
     toggleTodo,
     deleteTodo,
     addTodo,
-    stats
+    stats,
+    isUpdatingTodo
   } = useTodo();
 
   return (
@@ -50,6 +51,7 @@ const TodoPage = () => {
               todo={todo}
               onToggle={toggleTodo}
               onDelete={deleteTodo}
+              isUpdating={isUpdatingTodo(todo.id)}
             />
           ))
         )}

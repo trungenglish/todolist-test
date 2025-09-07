@@ -1,11 +1,10 @@
 import axiosInstance from "@/lib/axiosInstance";
 import type { ApiResponse } from "@/types/apiResponse";
-import type { TodoResponse } from "@/types/todo";
+import type { Todo } from "@/types/todo";
 
 export const todoApi = {
     getAllTodos: async () => {
-        const response = await axiosInstance.get<ApiResponse<TodoResponse[]>>("/tasks");
-        console.log(response);
+        const response = await axiosInstance.get<ApiResponse<Todo[]>>("/tasks");
         return response.data;
     },
 
@@ -14,14 +13,14 @@ export const todoApi = {
         return response.data;
     },
 
-    updateTodo: async (id: string) => {
-        const response = await axiosInstance.put(`/tasks/${id}`);
+    updateTodo: async (id: string, completed: boolean) => {
+        const response = await axiosInstance.put(`/tasks/${id}`, { completed });
+        console.log("response", response);
         return response.data;
     },
 
     deleteTodo: async (id: string) => {
         const response = await axiosInstance.delete(`/tasks/${id}`);
-        return response.data;
+        return response.data.success;
     }
-
 }

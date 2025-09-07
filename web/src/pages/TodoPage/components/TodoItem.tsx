@@ -8,11 +8,12 @@ import { useTodoItem } from "../hooks/useTodoItem";
 
 interface TodoItemProps {
     todo: Todo;
-    onToggle: (id: string) => void;
+    onToggle: (id: string, completed: boolean) => void;
     onDelete: (id: string) => void;
+    isUpdating?: boolean;
 }
 
-const TodoItem = ({ todo, onToggle, onDelete }: TodoItemProps) => {
+const TodoItem = ({ todo, onToggle, onDelete, isUpdating = false }: TodoItemProps) => {
     const { isDeleting, handleDelete } = useTodoItem();
 
     const onDeleteClick = () => {
@@ -33,10 +34,12 @@ const TodoItem = ({ todo, onToggle, onDelete }: TodoItemProps) => {
                 <div className="mt-1">
                     <Checkbox
                         checked={todo.completed}
-                        onCheckedChange={() => onToggle(todo.id)}
+                        onCheckedChange={() => onToggle(todo.id, !todo.completed)}
+                        disabled={isUpdating}
                         className={cn(
-                        "w-5 h-5 transition-all duration-200",
-                        todo.completed && "data-[state=checked]:bg-[hsl(var(--success))] data-[state=checked]:border-[hsl(var(--success))]"
+                            "w-5 h-5 transition-all duration-200",
+                            todo.completed && "data-[state=checked]:bg-[hsl(var(--success))] data-[state=checked]:border-[hsl(var(--success))]",
+                            isUpdating && "opacity-50 cursor-not-allowed"
                         )}
                     />
                 </div>
