@@ -3,7 +3,6 @@ import type { Todo } from "@/types/todo";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Calendar, Trash2 } from "lucide-react";
-import { formatDate } from "@/utils/formatter";
 import { useTodoItem } from "../hooks/useTodoItem";
 
 interface TodoItemProps {
