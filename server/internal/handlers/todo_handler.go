@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"todo-list/internal/models"
 	"todo-list/internal/service"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,7 +13,7 @@ type CreateTodoRequest struct {
 }
 
 type UpdateTodoRequest struct {
-	Completed bool `json:"completed" binding:"required"`
+	Completed bool `json:"completed"`
 }
 
 func CreateTodoHandler(c *gin.Context) {

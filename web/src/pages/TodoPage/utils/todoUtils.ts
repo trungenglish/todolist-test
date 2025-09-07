@@ -1,12 +1,12 @@
 import type { Todo, TodoFilter } from "@/types/todo";
 
-export const createTodo = (title: string, description: string): Todo => ({
-  id: crypto.randomUUID(),
-  title: title.trim(),
-  description: description.trim(),
-  completed: false,
-  createdAt: new Date(),
-});
+// export const createTodo = (title: string, description: string): Todo => ({
+//   id: crypto.randomUUID(),
+//   title: title.trim(),
+//   description: description.trim(),
+//   completed: false,
+//   createdAt: new Date(),
+// });
 
 export const filterTodos = (todos: Todo[], filter: TodoFilter): Todo[] => {
   switch (filter) {
@@ -20,6 +20,7 @@ export const filterTodos = (todos: Todo[], filter: TodoFilter): Todo[] => {
 };
 
 export const calculateStats = (todos: Todo[]) => {
+  // console.log("todos", todos);
   const total = todos.length;
   const completed = todos.filter(todo => todo.completed).length;
   const active = total - completed;
