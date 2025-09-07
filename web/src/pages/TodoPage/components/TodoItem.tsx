@@ -70,7 +70,6 @@ const TodoItem = ({ todo, onToggle, onDelete, isUpdating = false }: TodoItemProp
           
                     <div className="flex items-center gap-2 mt-2 text-xs text-[hsl(var(--muted-foreground))]">
                         <Calendar className="w-3 h-3" />
-                        {/* <span>{formatDate(todo.createdAt)}</span> */}
                         {todo.completed && (
                         <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[hsl(var(--success))]/10 text-[hsl(var(--success))]">
                             Hoàn thành
